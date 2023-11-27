@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Conference;
 use App\Repository\CommentRepository;
+use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 class ConferenceController extends AbstractController
 {
@@ -30,7 +31,7 @@ class ConferenceController extends AbstractController
     }
 
     /**
-     * @throws \Exception
+     * @throws \Exception|TransportExceptionInterface
      */
     #[Route('/conference/{slug}', name: 'conference')]
     public function show(
