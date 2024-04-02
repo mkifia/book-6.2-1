@@ -120,7 +120,7 @@ class Comment
     }
 
     #[ORM\PrePersist]
-    public function setCreatedAtValue()
+    public function setCreatedAtValue(): void
     {
         $this->createdAt = new \DateTimeImmutable();
     }

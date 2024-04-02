@@ -31,6 +31,7 @@ class SpamCheckerTest extends TestCase
 
     /**
      * @dataProvider provideComments
+     * @throws TransportExceptionInterface
      */
     public function testSpamScore(int $expectedScore, ResponseInterface $response, Comment $comment, array $context)
     {

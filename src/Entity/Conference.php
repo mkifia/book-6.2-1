@@ -104,11 +104,9 @@ class Conference
 
     public function removeComment(Comment $comment): static
     {
-        if ($this->comments->removeElement($comment)) {
+        if ($this->comments->removeElement($comment) && $comment->getConference() === $this) {
             // set the owning side to null (unless already changed)
-            if ($comment->getConference() === $this) {
-                $comment->setConference(null);
-            }
+            $comment->setConference(null);
         }
 
         return $this;
@@ -126,7 +124,7 @@ class Conference
         return $this;
     }
 
-    public function computeSlug(SluggerInterface $slugger)
+    public function computeSlug(SluggerInterface $slugger): void
     {
         if (!$this->slug || '-' === $this->slug) {
             $this->slug = (string) $slugger->slug((string) $this)->lower();
